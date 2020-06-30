@@ -18,26 +18,26 @@ namespace TransPick.Entities.Structs
     /// the right column and bottom row of pixels. This structure is identical to the RECTL structure.
     /// </remarks>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Rect
+    internal struct Rect
     {
         /// <summary>
         /// The x-coordinate of the upper-left corner of the rectangle.
         /// </summary>
-        public int Left;
+        internal int Left;
 
         /// <summary>
         /// The y-coordinate of the upper-left corner of the rectangle.
         /// </summary>
-        public int Top;
+        internal int Top;
 
         /// <summary>
         /// The x-coordinate of the lower-right corner of the rectangle.
         /// </summary>
-        public int Right;
+        internal int Right;
 
         /// <summary>
         /// The y-coordinate of the lower-right corner of the rectangle.
         /// </summary>
-        public int Bottom;
+        internal int Bottom;
     }
 }

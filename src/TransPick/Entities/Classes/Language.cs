@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace TransPick.Entities.Classes
 {
-    public class Language
+    internal class Language
     {
-        public string DisplayName { get; set; }
-        public CultureInfo Culture { get; set; }
+        internal string DisplayName { get; set; }
+        internal CultureInfo Culture { get; set; }
     }
 }

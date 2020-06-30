@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TransPick.Pages
+namespace TransPick.Widgets
 {
     /// <summary>
-    /// ExtensionTab.xaml에 대한 상호 작용 논리
+    /// CaptureToolsWidget.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ExtensionTab : Page
+    public partial class CaptureToolsWidget : Window
     {
-        public ExtensionTab()
+        public CaptureToolsWidget()
         {
             InitializeComponent();
         }

@@ -35,27 +35,27 @@ namespace TransPick
         {
             if (sender.Equals(GeneralTabButton))
             {
-                ConfigPageFrame.Source = new Uri("Pages/GeneralTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/GeneralTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(ShortCutTabButton))
             {
-                ConfigPageFrame.Source = new Uri("Pages/ShortcutsTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/ShortcutsTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(OCRTabButton))
             {
-                ConfigPageFrame.Source = new Uri("Pages/OCRTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/OCRTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(TranslatorTabButton))
             {
-                ConfigPageFrame.Source = new Uri("Pages/TranslatorTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/TranslatorTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(ExtensionTabButton))
             {
-                ConfigPageFrame.Source = new Uri("Pages/ExtensionTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/ExtensionTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(InfoTabButton))
             {
-                ConfigPageFrame.Source = new Uri("Pages/InfoTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/InfoTab.xaml", UriKind.Relative);
             }
         }
     }

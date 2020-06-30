@@ -30,6 +30,6 @@
         </StackPanel>
         
         <!--Configuration Panel Frame-->
-        <Frame x:Name="ConfigPageFrame" Background="{DynamicResource MaterialDesignPaper}" Grid.Row="1" Source="Pages/GeneralTab.xaml" NavigationUIVisibility="Hidden" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ></Frame>
+        <Frame x:Name="TabPageFrame" Background="{DynamicResource MaterialDesignPaper}" Grid.Row="1" Source="Pages/GeneralTab.xaml" NavigationUIVisibility="Hidden" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ></Frame>
     </Grid>
 </Window>

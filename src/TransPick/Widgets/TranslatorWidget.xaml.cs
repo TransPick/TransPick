@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TransPick.Pages
+namespace TransPick.Widgets
 {
     /// <summary>
-    /// ShortCutTab.xaml에 대한 상호 작용 논리
+    /// TranslatorWidget.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ShortcutsTab : Page
+    public partial class TranslatorWidget : Window
     {
-        public ShortcutsTab()
+        public TranslatorWidget()
         {
             InitializeComponent();
         }

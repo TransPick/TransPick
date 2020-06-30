@@ -14,7 +14,7 @@ namespace TransPick.Entities.Structs
     /// for the display monitor.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-    public struct MonitorInfoEx
+    internal struct MonitorInfoEx
     {
         // size of a device name string
         private const int CCHDEVICENAME = 32;
@@ -23,13 +23,13 @@ namespace TransPick.Entities.Structs
         /// The size, in bytes, of the structure. Set this member to sizeof(MONITORINFOEX) (72) before calling the GetMonitorInfo function.
         /// Doing so lets the function determine the type of structure you are passing to it.
         /// </summary>
-        public int Size;
+        internal int Size;
 
         /// <summary>
         /// A RECT structure that specifies the display monitor rectangle, expressed in virtual-screen coordinates.
         /// Note that if the monitor is not the primary display monitor, some of the rectangle's coordinates may be negative values.
         /// </summary>
-        public Rect Monitor;
+        internal Rect Monitor;
 
         /// <summary>
         /// A RECT structure that specifies the work area rectangle of the display monitor that can be used by applications,
@@ -37,7 +37,7 @@ namespace TransPick.Entities.Structs
         /// The rest of the area in rcMonitor contains system windows such as the task bar and side bars.
         /// Note that if the monitor is not the primary display monitor, some of the rectangle's coordinates may be negative values.
         /// </summary>
-        public Rect WorkArea;
+        internal Rect WorkArea;
 
         /// <summary>
         /// The attributes of the display monitor.
@@ -45,28 +45,28 @@ namespace TransPick.Entities.Structs
         /// This member can be the following value:
         ///   1 : MONITORINFOF_PRIMARY
         /// </summary>
-        public uint Flags;
+        internal uint Flags;
 
         /// <summary>
         /// A string that specifies the device name of the monitor being used. Most applications have no use for a display monitor name,
         /// and so can save some bytes by using a MONITORINFO structure.
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = CCHDEVICENAME)]
-        public string DeviceName;
+        internal string DeviceName;
 
         const uint MONITORINFOF_PRIMARY = 1;
 
-        public uint cbSize;
+        internal uint cbSize;
 
-        public Rect rcMonitor;
+        internal Rect rcMonitor;
 
-        public Rect rcWork;
+        internal Rect rcWork;
 
-        public int dwFlags;
+        internal int dwFlags;
 
-        public string szDevice;
+        internal string szDevice;
 
-        public void Init()
+        internal void Init()
         {
             this.Size = 40 + 2 * CCHDEVICENAME;
             this.DeviceName = string.Empty;

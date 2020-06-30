@@ -93,19 +93,23 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\Enums\BitmapFormat.cs" />
+    <Compile Include="Entities\Enums\KeyModifiers.cs" />
     <Compile Include="Entities\Enums\SystemMetric.cs" />
     <Compile Include="Entities\Structs\MonitorInfoEx.cs" />
     <Compile Include="Entities\Structs\Rect.cs" />
     <Compile Include="Entities\Classes\Language.cs" />
+    <Compile Include="Entities\Structs\ShortcutKey.cs" />
     <Compile Include="Features\Image\BitmapExtension.cs" />
     <Compile Include="Features\Image\AreaCapturer.cs" />
     <Compile Include="Features\Image\ControlCapturer.cs" />
     <Compile Include="Features\Image\FullScreenCapturer.cs" />
     <Compile Include="Features\Image\WindowCapturer.cs" />
     <Compile Include="Features\Unmanaged\Gdi.cs" />
+    <Compile Include="Features\Unmanaged\HotKey.cs" />
     <Compile Include="Features\Unmanaged\Monitor.cs" />
     <Compile Include="Features\Unmanaged\System.cs" />
     <Compile Include="Features\Unmanaged\Window.cs" />
+    <Compile Include="Features\Utility\HotKeyRegister.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -116,33 +120,33 @@
     <Compile Include="Settings\ShortCuts.cs" />
     <Compile Include="Settings\Theme.cs" />
     <Compile Include="Settings\Translator.cs" />
-    <Compile Include="TranslatorWidget.xaml.cs">
+    <Compile Include="Widgets\TranslatorWidget.xaml.cs">
       <DependentUpon>TranslatorWidget.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaptureToolsWidget.xaml.cs">
+    <Compile Include="Widgets\CaptureToolsWidget.xaml.cs">
       <DependentUpon>CaptureToolsWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConfigWindow.xaml.cs">
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ExtensionTab.xaml.cs">
+    <Compile Include="Pages\ConfigTabs\ExtensionTab.xaml.cs">
       <DependentUpon>ExtensionTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\GeneralTab.xaml.cs">
+    <Compile Include="Pages\ConfigTabs\GeneralTab.xaml.cs">
       <DependentUpon>GeneralTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\InfoTab.xaml.cs">
+    <Compile Include="Pages\ConfigTabs\InfoTab.xaml.cs">
       <DependentUpon>InfoTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OCRTab.xaml.cs">
+    <Compile Include="Pages\ConfigTabs\OCRTab.xaml.cs">
       <DependentUpon>OCRTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ShortcutsTab.xaml.cs">
+    <Compile Include="Pages\ConfigTabs\ShortcutsTab.xaml.cs">
       <DependentUpon>ShortcutsTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TranslatorTab.xaml.cs">
+    <Compile Include="Pages\ConfigTabs\TranslatorTab.xaml.cs">
       <DependentUpon>TranslatorTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -172,7 +176,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CaptureToolsWidget.xaml">
+    <Page Include="Widgets\CaptureToolsWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,31 +188,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ExtensionTab.xaml">
+    <Page Include="Pages\ConfigTabs\ExtensionTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\GeneralTab.xaml">
+    <Page Include="Pages\ConfigTabs\GeneralTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\InfoTab.xaml">
+    <Page Include="Pages\ConfigTabs\InfoTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\OCRTab.xaml">
+    <Page Include="Pages\ConfigTabs\OCRTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ShortcutsTab.xaml">
+    <Page Include="Pages\ConfigTabs\ShortcutsTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\TranslatorTab.xaml">
+    <Page Include="Pages\ConfigTabs\TranslatorTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TranslatorWidget.xaml">
+    <Page Include="Widgets\TranslatorWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

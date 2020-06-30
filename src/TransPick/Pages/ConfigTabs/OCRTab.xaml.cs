@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TransPick
+namespace TransPick.Pages.ConfigTabs
 {
     /// <summary>
-    /// TranslatorWidget.xaml에 대한 상호 작용 논리
+    /// OCRTab.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class TranslatorWidget : Window
+    public partial class OCRTab : Page
     {
-        public TranslatorWidget()
+        public OCRTab()
         {
             InitializeComponent();
         }

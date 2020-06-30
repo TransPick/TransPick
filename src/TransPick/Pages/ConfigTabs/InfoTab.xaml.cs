@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TransPick.Pages
+namespace TransPick.Pages.ConfigTabs
 {
     /// <summary>
     /// AppInfoPage.xaml에 대한 상호 작용 논리
