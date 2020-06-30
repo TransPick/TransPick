@@ -1,0 +1,55 @@
+현재 포커싱 된 윈도우 핸들을 가져옴.
+
+가져온 핸들 정보를 이용해서 해당 윈도우에 TransPick Task bar를 표시.
+
+핸들 정보를 이용해서 비활성 이미지 서칭(해당 윈도우 전체, Sizable 직사각형 내 사용자 지정)을 시도.
+
+이미지 정보를 받아오는데 성공한다면 지정된 OCR 플러그인을 사용하여 OCR 작업을 수행.
+
+OCR 작업이 성공했다면 지정된 번역 플러그인을 사용하여 번역 작업을 수행함.
+
+원문과 번역문을 GameOverlay 라이브러리를 사용해서 표시함.
+
+이후 해당 창을 계속 감시하다가 화면 내용에 변동이 생기면 오버레이를 중지함.
+
+
+
+### 설정창 탭 아이템 ###
+일반(프로그램 테마, 버그 정보 수집 기능 사용 여부)
+OCR(사용할 OCR 확장팩 설정)
+번역(사용할 번역 확장팩 설정)
+확장(로드된 플러그인 정보 표시 및 설정)
+정보(이름, 개발사, 버전, 저작권, 오픈소스 라이선스, 약관)
+
+
+
+### 확장팩 구조 ###
+Settings : 확장팩이 사용할 설정 정보를 가짐. Singleton 패턴으로 구현되어야 하며, IExtension을 구현하는 동적 링크 라이브러리는 무조건 포함해야함.
+
+IExtension : 확장팩의 기본이 되는 인터페이스. IDisposable을 구현해야 함.
+-OnEnabled
+-OnDisabled
+-OnErrorOccured
+-GetConfig
+-ReloadConfig
+-SaveConfig
+-Dispose
+
+IOCRExtension : IExtension을 상속하는 인터페이스. OCR 확장을 구현함.
+-OnCharacterRecognized
+-OnLanguageChanged
+-Run
+-RunAsync
+
+ITranslatorExtension : IExtension을 상속하는 인터페이스. 번역 확장을 구현함.
+-OnTranslated
+-OnLanguageChanged
+-Run
+-RunAsync
+
+
+OCR 확장 : 하나 이상의 IOCRExtension을 구현하는 동적 링크 라이브러리를 포함한 ZIP 패키지.
+번역 확장 : 하나 이상의 ITranslatorExtension을 구현하는 동적 링크 라이브러리를 포함한 ZIP 패키지.
+
+* 설정창 탭 아이템 구현(Configuration Panel) : Attribute를 이용하여 탭 아이템 정보 표기, 세부 작업 수행에는 Page를 사용함.
+* 

@@ -1,0 +1,35 @@
+﻿<Window x:Class="TransPick.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TransPick"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="ConfigWindow" Height="529" Width="806" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!--Tab Page Controller-->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="4">
+            <RadioButton x:Name="GeneralTabButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="GENERAL" Click="OnTabClick" />
+            <RadioButton x:Name="ShortCutTabButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="SHORT-CUTS" Click="OnTabClick" />
+            <RadioButton x:Name="OCRTabButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="OCR" Click="OnTabClick" />
+            <RadioButton x:Name="TranslatorTabButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="TRANSLATOR" Click="OnTabClick" />
+            <RadioButton x:Name="ExtensionTabButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="EXTENSION" Click="OnTabClick" />
+            <RadioButton x:Name="InfoTabButton" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="INFO" Click="OnTabClick" />
+        </StackPanel>
+        
+        <!--Configuration Panel Frame-->
+        <Frame x:Name="ConfigPageFrame" Background="{DynamicResource MaterialDesignPaper}" Grid.Row="1" Source="Pages/GeneralTab.xaml" NavigationUIVisibility="Hidden" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ></Frame>
+    </Grid>
+</Window>
