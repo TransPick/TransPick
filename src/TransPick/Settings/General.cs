@@ -3,12 +3,12 @@ using System.IO;
 using System.Runtime.Serialization;
 using TransPick.Entities;
 using TransPick.Entities.Classes;
-using TransPick.Entities.Interfaces;
+using TransPick.Entities.Enums;
 
 namespace TransPick.Settings
 {
     [Serializable]
-    public class General : ISettings, ISerializable
+    internal class General
     {
         #region ::Singleton::
 
@@ -16,7 +16,7 @@ namespace TransPick.Settings
         [NonSerialized]
         private static General _instance = null;
 
-        public static General GetInstance()
+        internal static General GetInstance()
         {
             if (_instance == null)
                 _instance = new General();
@@ -31,7 +31,7 @@ namespace TransPick.Settings
         [NonSerialized]
         private bool _isDeserialized = false;
 
-        public bool IsDeserialized
+        internal bool IsDeserialized
         {
             get
             {
@@ -42,7 +42,7 @@ namespace TransPick.Settings
         // Application language information
         private Language _language = new Language();
 
-        public Language Language
+        internal Language Language
         {
             get
             {
@@ -54,51 +54,25 @@ namespace TransPick.Settings
             }
         }
 
+        private CapturerType _lastCapturerType = CapturerType.AllScreen;
+
+        internal CapturerType LastCapturerType
+        {
+            get
+            {
+                return _lastCapturerType;
+            }
+            set
+            {
+                _lastCapturerType = value;
+            }
+        }
+
         #endregion
 
         #region ::Constructors::
 
-        public General() { }
-
-        public General(SerializationInfo info, StreamingContext context)
-        {
-            // Reset the property value using the GetValue method.
-            _language = (Language)info.GetValue("language", typeof(Language));
-        }
-
-        #endregion
-
-        #region ::Serializer and Deserializer::
-
-        // Add data to be serialized or deserialized.
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            // Use the AddValue method to specify serialized values.
-            info.AddValue("language", _language, typeof(Language));
-        }
-
-        public void Serialize(string fileName, IFormatter formatter)
-        {
-            // Create an instance of the type and serialize it.
-            using (FileStream stream = new FileStream(fileName, FileMode.Create))
-            {
-                formatter.Serialize(stream, this);
-                stream.Close();
-            }
-        }
-
-        public void Deserialize(string fileName, IFormatter formatter)
-        {
-            if (!File.Exists(fileName))
-                throw new FileNotFoundException();
-
-            using (FileStream stream = new FileStream(fileName, FileMode.Open))
-            {
-                General instance = (General)formatter.Deserialize(stream);
-                _instance = instance;
-                stream.Close();
-            }
-        }
+        internal General() { }
 
         #endregion
     }

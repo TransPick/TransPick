@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TransPick.Pages.ConfigTabs
+namespace TransPick.Pages.Config
 {
     /// <summary>
-    /// GeneralTab.xaml에 대한 상호 작용 논리
+    /// TranslatorTab.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class GeneralTab : Page
+    public partial class TranslatorTab : Page
     {
-        public GeneralTab()
+        public TranslatorTab()
         {
             InitializeComponent();
         }

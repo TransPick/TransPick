@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TransPick.Features.Image;
-using MessageBox = System.Windows.MessageBox;
 
 namespace TransPick
 {
@@ -26,36 +25,43 @@ namespace TransPick
         public ConfigWindow()
         {
             InitializeComponent();
+        }
 
-            BitmapImage image = WindowCapturer.CaptureWindowByHandle(WindowCapturer.GetFocusedWindowHandle());
-            image.Save(Entities.Enums.BitmapFormat.Png, @"\test.png");
-        }        
+        private void OnTitleBarClick(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown(0);
+        }
 
         private void OnTabClick(object sender, RoutedEventArgs e)
         {
             if (sender.Equals(GeneralTabButton))
             {
-                TabPageFrame.Source = new Uri("Pages/GeneralTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/Config/GeneralTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(ShortCutTabButton))
             {
-                TabPageFrame.Source = new Uri("Pages/ShortcutsTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/Config/ShortcutsTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(OCRTabButton))
             {
-                TabPageFrame.Source = new Uri("Pages/OCRTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/Config/OCRTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(TranslatorTabButton))
             {
-                TabPageFrame.Source = new Uri("Pages/TranslatorTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/Config/TranslatorTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(ExtensionTabButton))
             {
-                TabPageFrame.Source = new Uri("Pages/ExtensionTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/Config/ExtensionTab.xaml", UriKind.Relative);
             }
             else if (sender.Equals(InfoTabButton))
             {
-                TabPageFrame.Source = new Uri("Pages/InfoTab.xaml", UriKind.Relative);
+                TabPageFrame.Source = new Uri("Pages/Config/InfoTab.xaml", UriKind.Relative);
             }
         }
     }

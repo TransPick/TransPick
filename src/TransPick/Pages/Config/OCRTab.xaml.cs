@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TransPick.Pages.ConfigTabs
+namespace TransPick.Pages.Config
 {
     /// <summary>
-    /// ExtensionTab.xaml에 대한 상호 작용 논리
+    /// OCRTab.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ExtensionTab : Page
+    public partial class OCRTab : Page
     {
-        public ExtensionTab()
+        public OCRTab()
         {
             InitializeComponent();
         }

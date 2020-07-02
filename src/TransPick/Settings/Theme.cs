@@ -6,7 +6,7 @@ using System.Windows.Media;
 namespace TransPick.Settings
 {
     [Serializable]
-    public class Theme : ISettings, ISerializable
+    internal class Theme
     {
         #region ::Singleton::
 
@@ -14,7 +14,7 @@ namespace TransPick.Settings
         [NonSerialized]
         private static Theme _instance = null;
 
-        public static Theme GetInstance()
+        internal static Theme GetInstance()
         {
             if (_instance == null)
                 _instance = new Theme();
@@ -29,7 +29,7 @@ namespace TransPick.Settings
         [NonSerialized]
         private bool _isDeserialized = false;
 
-        public bool IsDeserialized
+        internal bool IsDeserialized
         {
             get
             {
@@ -39,7 +39,7 @@ namespace TransPick.Settings
 
         private bool _isUsingDarkMode = false;
 
-        public bool IsUsingDarkMode
+        internal bool IsUsingDarkMode
         {
             get
             {
@@ -53,7 +53,7 @@ namespace TransPick.Settings
 
         private Color _primaryColor;
 
-        public Color PrimaryColor
+        internal Color PrimaryColor
         {
             get
             {
@@ -67,7 +67,7 @@ namespace TransPick.Settings
 
         private Color _secondaryColor;
 
-        public Color SecondaryColor
+        internal Color SecondaryColor
         {
             get
             {
@@ -83,50 +83,13 @@ namespace TransPick.Settings
 
         #region ::Constructors::
 
-        public Theme() { }
+        internal Theme() { }
 
-        public Theme(SerializationInfo info, StreamingContext context)
+        internal Theme(bool isUsingDarkMode, Color primaryColor, Color secondaryColor)
         {
-            // Reset the property value using the GetValue method.
-            _isUsingDarkMode = (bool)info.GetValue("using_dark_mode", typeof(bool));
-            _primaryColor = (Color)info.GetValue("primary_color", typeof(Color));
-            _secondaryColor = (Color)info.GetValue("secondary_color", typeof(Color));
-        }
-
-        #endregion
-
-        #region ::Serializer and Deserializer::
-
-        // Add data to be serialized or deserialized.
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            // Use the AddValue method to specify serialized values.
-            info.AddValue("using_dark_mode", _isUsingDarkMode, typeof(bool));
-            info.AddValue("primary_color", _primaryColor, typeof(Color));
-            info.AddValue("secondary_color", _secondaryColor, typeof(Color));
-        }
-
-        public void Serialize(string fileName, IFormatter formatter)
-        {
-            // Create an instance of the type and serialize it.
-            using (FileStream stream = new FileStream(fileName, FileMode.Create))
-            {
-                formatter.Serialize(stream, this);
-                stream.Close();
-            }
-        }
-
-        public void Deserialize(string fileName, IFormatter formatter)
-        {
-            if (!File.Exists(fileName))
-                throw new FileNotFoundException();
-
-            using (FileStream stream = new FileStream(fileName, FileMode.Open))
-            {
-                Theme instance = (Theme)formatter.Deserialize(stream);
-                _instance = instance;
-                stream.Close();
-            }
+            _isUsingDarkMode = isUsingDarkMode;
+            _primaryColor = primaryColor;
+            _secondaryColor = secondaryColor;
         }
 
         #endregion

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TransPick.Entities.Enums
 {
     [Flags]
-    public enum KeyModifiers
+    internal enum KeyModifiers
     {
         None = 0,
         Alt = 1,
