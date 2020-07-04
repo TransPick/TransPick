@@ -11,6 +11,7 @@ namespace TransPick.Entities.Enums
         AllScreen,
         SelectedScreen,
         Window,
+        Control,
         Area,
         FixedArea
     }

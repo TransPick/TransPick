@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using TransPick.Entities.Enums;
 
 namespace TransPick.Features.Unmanaged
 {
@@ -58,16 +60,10 @@ namespace TransPick.Features.Unmanaged
 
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool PrintWindow(IntPtr hwnd, IntPtr hDC, uint nFlags);
+        internal static extern bool PrintWindow(IntPtr hwnd, IntPtr hDC, RegionFlags nFlags);
 
         [DllImport("user32.dll")]
         internal static extern int GetWindowRgn(IntPtr hWnd, IntPtr hRgn);
-
-        //Region Flags - The return value specifies the type of the region that the function obtains. It can be one of the following values.
-        internal const int ERROR = 0;
-        internal const int NULLREGION = 1;
-        internal const int SIMPLEREGION = 2;
-        internal const int COMPLEXREGION = 3;
 
         /// <summary>
         ///     Retrieves a handle to the foreground window (the window with which the user is currently working). The system
@@ -80,5 +76,16 @@ namespace TransPick.Features.Unmanaged
         /// </returns>
         [DllImport("user32.dll")]
         internal static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        internal static extern IntPtr WindowFromPoint(Point point);
+
+        internal static bool IsWindowHandleExists(IntPtr hWnd)
+        {
+            if (hWnd.Equals(0))
+                return false;
+            else
+                return true;
+        }
     }
 }
