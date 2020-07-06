@@ -119,7 +119,7 @@ namespace TransPick.Features.Overylay
 				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["green"], _brushes["grid"], 20, 20, infoText);
 			}
 
-			System.Drawing.Point cursorPoint = Cursor.GetCursorPoint();
+			System.Drawing.Point cursorPoint = InputDevices.GetCursorPoint();
 
 			// Draw objects.
 			gfx.DrawRectangle(_brushes["red"], cursorPoint.X, cursorPoint.Y, cursorPoint.X + _width, cursorPoint.Y + _height, 2.0f);

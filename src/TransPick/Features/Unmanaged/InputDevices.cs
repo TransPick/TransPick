@@ -5,11 +5,15 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using TransPick.Entities.Enums;
 
 namespace TransPick.Features.Unmanaged
 {
-    internal static class Cursor
+    internal static class InputDevices
     {
+        [DllImport("user32.dll")]
+        internal static extern short GetAsyncKeyState(VKeys vKey);
+
         [DllImport("user32.dll")]
         internal static extern bool GetCursorPos(out Point lpPoint);
 

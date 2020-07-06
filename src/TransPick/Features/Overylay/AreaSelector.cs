@@ -1,13 +1,13 @@
 ﻿using GameOverlay.Drawing;
 using GameOverlay.Windows;
-using Gma.System.MouseKeyHook;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
-using System.Windows.Forms;
+using TransPick.Entities.Enums;
 using TransPick.Features.Unmanaged;
 
 namespace TransPick.Features.Overylay
@@ -23,7 +23,7 @@ namespace TransPick.Features.Overylay
 
 		private readonly bool _isShowInfos = false;
 
-		private IKeyboardMouseEvents _globalHook;
+		private Timer _mouseTimer = new Timer(10);
 
 		private bool _isSetFirstPoint = false;
 		private bool _isSetSecondPoint = false;
@@ -62,6 +62,9 @@ namespace TransPick.Features.Overylay
 			_window.SetupGraphics += SetupGraphics;
 			_window.DrawGraphics += DrawGraphics;
 			_window.DestroyGraphics += DestroyGraphics;
+
+			_mouseTimer.Elapsed += OnMouseTimerTick;
+			_mouseTimer.Enabled = true;
 		}
 
 		#endregion
@@ -72,43 +75,34 @@ namespace TransPick.Features.Overylay
 		{
 			_window.Create();
 			_window.Join();
-
-			_globalHook = Hook.GlobalEvents();
-
-			_globalHook.MouseDragStarted += GlobalHookMouseDown;
-			_globalHook.MouseDragFinished += GlobalHookMouseUp;
+			_mouseTimer.Start();
 		}
 
 		internal Rect GetSelectedRect()
 		{
-			return new Rect();
+			return new Rect(_left, _top, _right - _left, _bottom - _top);
 		}
 
 		#endregion
 
-		#region ::Mouse Events::
+		#region ::Key Timer Events::
 
-		private void GlobalHookMouseDown(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Left)
-			{
-				_left = e.X;
-				_top = e.Y;
-
+		private void OnMouseTimerTick(object sender, EventArgs e)
+        {
+			if (!_isSetFirstPoint && 0 != (InputDevices.GetAsyncKeyState(VKeys.LBUTTON) & 0x8000))
+            {
+                System.Drawing.Point point = InputDevices.GetCursorPoint();
+				_left = point.X;
+				_top = point.Y;
 				_isSetFirstPoint = true;
-				System.Windows.MessageBox.Show("Down");
 			}
-		}
-
-		private void GlobalHookMouseUp(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Left)
+			
+			if (_isSetFirstPoint && !_isSetSecondPoint && 0 != (InputDevices.GetAsyncKeyState(VKeys.LBUTTON) & 0x0001))
 			{
-				_right = e.X;
-				_bottom = e.Y;
-
+				System.Drawing.Point point = InputDevices.GetCursorPoint();
+				_right = point.X;
+				_bottom = point.Y;
 				_isSetSecondPoint = true;
-				System.Windows.MessageBox.Show("Up");
 			}
 		}
 
@@ -166,19 +160,19 @@ namespace TransPick.Features.Overylay
 				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["green"], _brushes["grid"], 20, 20, infoText);
 			}
 
-			if (_isSetFirstPoint)
+			if (_isSetFirstPoint && !_isSetSecondPoint)
             {
-				System.Drawing.Point cursorPoint = Unmanaged.Cursor.GetCursorPoint();
+				System.Drawing.Point cursorPoint = InputDevices.GetCursorPoint();
 
 				// Draw objects.
-				gfx.DrawRectangle(_brushes["red"], _left, _top, cursorPoint.X, cursorPoint.X, 2.0f);
-				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], _left + 6, _top + 6, $"{cursorPoint.X - _left} X {cursorPoint.X - _top}");
+				gfx.DrawRectangle(_brushes["red"], _left, _top, cursorPoint.X, cursorPoint.Y, 2.0f);
+				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], _left + 6, _top + 6, $"{Math.Abs(cursorPoint.X - _left)} X {Math.Abs(cursorPoint.Y - _top)}");
 			}
 			else if (_isSetSecondPoint)
             {
 				// Draw objects.
 				gfx.DrawRectangle(_brushes["red"], _left, _top, _right, _bottom, 2.0f);
-				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], _left + 6, _top + 6, $"{_right - _left} X {_bottom - _top}");
+				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], _left + 6, _top + 6, $"{Math.Abs(_right - _left)} X {Math.Abs(_bottom - _top)}");
 			}
 		}
 
@@ -199,9 +193,7 @@ namespace TransPick.Features.Overylay
 			{
 				_window.Dispose();
 
-				_globalHook.MouseDragStarted -= GlobalHookMouseDown;
-				_globalHook.MouseDragFinished -= GlobalHookMouseUp;
-				_globalHook.Dispose();
+				_mouseTimer.Stop();
 
 				disposedValue = true;
 			}

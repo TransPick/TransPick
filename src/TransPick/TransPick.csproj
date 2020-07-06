@@ -97,6 +97,7 @@
     <Compile Include="Entities\Enums\KeyModifiers.cs" />
     <Compile Include="Entities\Enums\RegionFlags.cs" />
     <Compile Include="Entities\Enums\SystemMetric.cs" />
+    <Compile Include="Entities\Enums\VKeys.cs" />
     <Compile Include="Entities\Structs\MonitorInfoEx.cs" />
     <Compile Include="Entities\Structs\Rect.cs" />
     <Compile Include="Entities\Classes\Language.cs" />
@@ -108,7 +109,7 @@
     <Compile Include="Features\Overylay\CrossHair.cs" />
     <Compile Include="Features\Overylay\FixedAreaSelector.cs" />
     <Compile Include="Features\Overylay\ScreenSelector.cs" />
-    <Compile Include="Features\Unmanaged\Cursor.cs" />
+    <Compile Include="Features\Unmanaged\InputDevices.cs" />
     <Compile Include="Features\Unmanaged\Gdi.cs" />
     <Compile Include="Features\Unmanaged\HotKey.cs" />
     <Compile Include="Features\Unmanaged\Monitor.cs" />

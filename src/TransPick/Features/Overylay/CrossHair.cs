@@ -117,7 +117,7 @@ namespace TransPick.Features.Overylay
 				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["green"], _brushes["grid"], 20, 20, infoText);
 			}
 
-			System.Drawing.Point cursorPoint = Cursor.GetCursorPoint();
+			System.Drawing.Point cursorPoint = InputDevices.GetCursorPoint();
 
 			// Draw horizontal Left/Right line.
 			gfx.DashedLine(_brushes["red"], Monitor.GetLeft(), cursorPoint.Y, cursorPoint.X-1, cursorPoint.Y, 1.0f);

@@ -29,13 +29,13 @@ namespace TransPick.Widgets
             InitializeComponent();
             SetWindowPosition();
 
-            ScreenSelector highlighter = new ScreenSelector(true);
+            AreaSelector highlighter = new AreaSelector(true);
             highlighter.Run();
         }
 
         private void SetWindowPosition()
         {
-            Screen screen = Screen.FromPoint(Features.Unmanaged.Cursor.GetCursorPoint());
+            Screen screen = Screen.FromPoint(InputDevices.GetCursorPoint());
 
             Left = screen.Bounds.Left + (screen.Bounds.Width / 2) - ((int)Width / 2);
             Top = screen.Bounds.Top + 20;

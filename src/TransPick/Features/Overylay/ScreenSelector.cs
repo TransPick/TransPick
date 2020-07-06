@@ -118,7 +118,7 @@ namespace TransPick.Features.Overylay
 				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["green"], _brushes["grid"], 20, 20, infoText);
 			}
 
-			Screen screen = Screen.FromPoint(Unmanaged.Cursor.GetCursorPoint());
+			Screen screen = Screen.FromPoint(InputDevices.GetCursorPoint());
 
 		    // Draw objects.
 			gfx.DrawRectangle(_brushes["red"], screen.Bounds.Left, screen.Bounds.Top, screen.Bounds.Right, screen.Bounds.Bottom, 2.0f);

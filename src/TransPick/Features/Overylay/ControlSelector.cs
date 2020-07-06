@@ -117,7 +117,7 @@ namespace TransPick.Features.Overylay
 			}
 
 			// Get control information.
-			IntPtr hWnd = Window.WindowFromPoint(Cursor.GetCursorPoint());
+			IntPtr hWnd = Window.WindowFromPoint(InputDevices.GetCursorPoint());
 			Rect rect = new Rect();
 		    Window.GetWindowRect(hWnd, out rect);
 
