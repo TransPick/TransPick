@@ -12,7 +12,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="ConfigWindow" Height="532" Width="802" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" AllowsTransparency="True" WindowStyle="None">
+        Title="ConfigWindow" Height="532" Width="802" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None">
     <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>

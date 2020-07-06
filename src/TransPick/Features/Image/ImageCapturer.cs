@@ -202,7 +202,7 @@ namespace TransPick.Features.Image
         {
             try
             {
-                IntPtr hWnd = Window.WindowFromPoint(Cursor.GetCursorPoint());
+                IntPtr hWnd = Window.WindowFromPoint(Unmanaged.Cursor.GetCursorPoint());
 
                 Rectangle rectangle = Rectangle.Empty;
                 Graphics windowGraphics = Graphics.FromHwnd(hWnd);

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using TransPick.Entities.Enums;
+using TransPick.Entities.Structs;
 
 namespace TransPick.Features.Unmanaged
 {
@@ -64,6 +65,9 @@ namespace TransPick.Features.Unmanaged
 
         [DllImport("user32.dll")]
         internal static extern int GetWindowRgn(IntPtr hWnd, IntPtr hRgn);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool GetWindowRect(IntPtr hwnd, out Rect lpRect);
 
         /// <summary>
         ///     Retrieves a handle to the foreground window (the window with which the user is currently working). The system

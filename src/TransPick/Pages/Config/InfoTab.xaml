@@ -18,7 +18,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="0 14 0 14" HorizontalAlignment="Center">
-                <materialDesign:PackIcon Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center" Kind="Language" Width="50" Height="50"/>
+                <materialDesign:PackIcon Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center" Kind="Language" Width="36" Height="36"/>
                 <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="{DynamicResource PrimaryHueMidBrush}" Opacity=".86" VerticalAlignment="Center">TransPick!</TextBlock>
                 <StackPanel Orientation="Vertical" Margin="10 0 0 0">
                     <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Opacity=".68">TransPick 0.0.1.0001</TextBlock>
