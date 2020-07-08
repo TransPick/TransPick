@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization;
 using System.Windows.Media;
 
 namespace TransPick.Settings
@@ -24,7 +22,7 @@ namespace TransPick.Settings
 
         #endregion
 
-        #region ::Fields::
+        #region ::Application Theme Properties::
 
         [NonSerialized]
         private bool _isDeserialized = false;

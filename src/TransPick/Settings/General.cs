@@ -1,9 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization;
-using TransPick.Entities;
-using TransPick.Entities.Classes;
-using TransPick.Entities.Enums;
+using System.Collections.Generic;
+using TransPick.Capturers.Types;
+using TransPick.Settings.Types;
 
 namespace TransPick.Settings
 {
@@ -36,6 +34,20 @@ namespace TransPick.Settings
             get
             {
                 return _isDeserialized;
+            }
+        }
+
+        private List<Language> _languageList = new List<Language>();
+
+        internal List<Language> LanguageList
+        {
+            get
+            {
+                return _languageList;
+            }
+            set
+            {
+                _languageList = value;
             }
         }
 

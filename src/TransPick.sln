@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransPick", "TransPick\TransPick.csproj", "{D5BB7BC9-CCA5-450D-8D0C-DA4CD7F6A4A5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1FA7206C-A8BA-487A-AA39-0819E6ABD592} = {1FA7206C-A8BA-487A-AA39-0819E6ABD592}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransPick.Extension", "TransPick.Extension\TransPick.Extension.csproj", "{1FA7206C-A8BA-487A-AA39-0819E6ABD592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransPick.UnitTest", "TransPick.UnitTest\TransPick.UnitTest.csproj", "{3C8B01D4-57D2-4097-A72C-0DF7F78FEE0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{D5BB7BC9-CCA5-450D-8D0C-DA4CD7F6A4A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BB7BC9-CCA5-450D-8D0C-DA4CD7F6A4A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5BB7BC9-CCA5-450D-8D0C-DA4CD7F6A4A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA7206C-A8BA-487A-AA39-0819E6ABD592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA7206C-A8BA-487A-AA39-0819E6ABD592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA7206C-A8BA-487A-AA39-0819E6ABD592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA7206C-A8BA-487A-AA39-0819E6ABD592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C8B01D4-57D2-4097-A72C-0DF7F78FEE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C8B01D4-57D2-4097-A72C-0DF7F78FEE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C8B01D4-57D2-4097-A72C-0DF7F78FEE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C8B01D4-57D2-4097-A72C-0DF7F78FEE0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

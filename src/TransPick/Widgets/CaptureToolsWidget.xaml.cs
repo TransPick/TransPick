@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -12,10 +14,13 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TransPick.Entities.Enums;
-using TransPick.Entities.Structs;
-using TransPick.Features.Overylay;
-using TransPick.Features.Unmanaged;
+using TransPick.Capturers;
+using TransPick.Capturers.Types;
+using TransPick.Selectors;
+using TransPick.Unmanaged;
+using TransPick.Utilities;
+using Point = System.Drawing.Point;
+using Size = System.Drawing.Size;
 
 namespace TransPick.Widgets
 {
@@ -28,9 +33,6 @@ namespace TransPick.Widgets
         {
             InitializeComponent();
             SetWindowPosition();
-
-            AreaSelector highlighter = new AreaSelector(true);
-            highlighter.Run();
         }
 
         private void SetWindowPosition()
@@ -39,6 +41,25 @@ namespace TransPick.Widgets
 
             Left = screen.Bounds.Left + (screen.Bounds.Width / 2) - ((int)Width / 2);
             Top = screen.Bounds.Top + 20;
+        }
+
+        private void OnWidgetClick(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+
+            RunAreaCaptureProcessAsync();
+        }
+
+        private async void RunAreaCaptureProcessAsync()
+        {
+            using (AreaSelector selector = new AreaSelector(true))
+            {
+                var task = Task.Run(() => selector.Run());
+                Rect rect = await task;
+
+                BitmapImage bitmap = AreaCapturer.Capture((int)rect.Left, (int)rect.Top, (int)rect.Right, (int)rect.Bottom);
+                bitmap.Save(@"E:\", BitmapFormat.Png);
+            }
         }
     }
 }
