@@ -25,5 +25,5 @@ Developers can use the interfaces included in the library to implement extension
  * [MaterialDesignInXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE)(MIT License)
  * [SharpDX](https://github.com/sharpdx/SharpDX/blob/master/LICENSE)(MIT License)
 
-## Contributers
+## Contributors
 손형준(Hyeong-jun Son aka junimiso04)(junimiso04@naver.com) - **Main Developer**
