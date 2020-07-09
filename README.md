@@ -6,8 +6,9 @@
 ![GitHub](https://img.shields.io/github/license/TransPick/TransPick?style=flat-square)
  
 ## Overview
+NOTICE :  **This application is still in development.**
+
 TransPick is a translator that provides screen translation feature using OCR.
- **This application is still under development.**
 
 ## Description
 TransPick works with the process below.
