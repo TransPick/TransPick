@@ -2,16 +2,15 @@
 using GameOverlay.Windows;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using TransPick.Unmanaged;
-using TransPick.Unmanaged.Types;
+using Point = System.Drawing.Point;
 
-namespace TransPick.Selectors
+namespace TransPick.Highlighters
 {
-	internal class ControlSelector : IDisposable
-	{
+    internal class ScreenHighlighter : IDisposable
+    {
 		#region ::Fields::
 
 		private readonly GraphicsWindow _window;
@@ -21,11 +20,14 @@ namespace TransPick.Selectors
 
 		private readonly bool _isShowInfos = false;
 
+		private bool _isPointFixed = false;
+		private Point _point = new Point();
+
 		#endregion
 
 		#region ::Constructor::
 
-		internal ControlSelector(bool isShowInfos)
+		internal ScreenHighlighter(bool isShowInfos)
 		{
 			_brushes = new Dictionary<string, SolidBrush>();
 			_fonts = new Dictionary<string, Font>();
@@ -50,6 +52,16 @@ namespace TransPick.Selectors
 			_window.SetupGraphics += SetupGraphics;
 			_window.DrawGraphics += DrawGraphics;
 			_window.DestroyGraphics += DestroyGraphics;
+		}
+
+		#endregion
+
+		#region ::Area Point Related::
+
+		internal void SetPoint(Point point)
+		{
+			_point = point;
+			_isPointFixed = true;
 		}
 
 		#endregion
@@ -116,21 +128,29 @@ namespace TransPick.Selectors
 				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["green"], _brushes["grid"], 20, 20, infoText);
 			}
 
-			// Get control information.
-			IntPtr hWnd = Window.WindowFromPoint(InputDevices.GetCursorPoint());
-			RECT rect = new RECT();
-		    Window.GetWindowRect(hWnd, out rect);
+			if (!_isPointFixed)
+            {
+				Screen screen = Screen.FromPoint(InputDevices.GetCursorPoint());
 
-			// Draw objects.
-			gfx.DrawRectangle(_brushes["red"], rect.Left, rect.Top, rect.Right, rect.Bottom, 2.0f);
-			gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], rect.Left + 6, rect.Top + 6, $"{rect.Right-rect.Left} X {rect.Bottom-rect.Top}");
+				// Draw objects.
+				gfx.DrawRectangle(_brushes["red"], screen.Bounds.Left, screen.Bounds.Top, screen.Bounds.Right, screen.Bounds.Bottom, 2.0f);
+				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], screen.Bounds.Left + 6, screen.Bounds.Top + 6, $"{(screen.Primary ? "Primary" : "Sub")} | {screen.Bounds.Width} X {screen.Bounds.Height}");
+			}
+            else
+            {
+				Screen screen = Screen.FromPoint(_point);
+
+				// Draw objects.
+				gfx.DrawRectangle(_brushes["red"], screen.Bounds.Left, screen.Bounds.Top, screen.Bounds.Right, screen.Bounds.Bottom, 2.0f);
+				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], screen.Bounds.Left + 6, screen.Bounds.Top + 6, $"{(screen.Primary ? "Primary" : "Sub")} | {screen.Bounds.Width} X {screen.Bounds.Height}");
+			}
 		}
 
 		#endregion
 
 		#region ::IDisposable Support::
 
-		~ControlSelector()
+		~ScreenHighlighter()
 		{
 			Dispose(false);
 		}

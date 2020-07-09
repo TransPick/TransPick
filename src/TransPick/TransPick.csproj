@@ -99,6 +99,8 @@
     <Compile Include="Capturers\Types\CapturerType.cs" />
     <Compile Include="Capturers\WindowCapturer.cs" />
     <Compile Include="Selectors\AreaEventArgs.cs" />
+    <Compile Include="Selectors\AreaSelector.cs" />
+    <Compile Include="Selectors\ScreenSelector.cs" />
     <Compile Include="Unmanaged\Types\KeyModifier.cs" />
     <Compile Include="Unmanaged\Types\RegionFlags.cs" />
     <Compile Include="Unmanaged\Types\SystemMetric.cs" />
@@ -108,11 +110,11 @@
     <Compile Include="Settings\Types\Language.cs" />
     <Compile Include="Unmanaged\Types\ShortcutKey.cs" />
     <Compile Include="Utilities\BitmapExtension.cs" />
-    <Compile Include="Selectors\ControlSelector.cs" />
-    <Compile Include="Selectors\AreaSelector.cs" />
-    <Compile Include="Selectors\CrossHair.cs" />
-    <Compile Include="Selectors\FixedAreaSelector.cs" />
-    <Compile Include="Selectors\ScreenSelector.cs" />
+    <Compile Include="Highlighters\ControlHighlighter.cs" />
+    <Compile Include="Highlighters\AreaHighlighter.cs" />
+    <Compile Include="Highlighters\CrossHair.cs" />
+    <Compile Include="Highlighters\FixedAreaHighlighter.cs" />
+    <Compile Include="Highlighters\ScreenHighlighter.cs" />
     <Compile Include="Unmanaged\InputDevices.cs" />
     <Compile Include="Unmanaged\Gdi.cs" />
     <Compile Include="Unmanaged\HotKey.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="Settings\ShortCuts.cs" />
     <Compile Include="Settings\Theme.cs" />
     <Compile Include="Settings\Translator.cs" />
+    <Compile Include="Utilities\MouseInputManager.cs" />
     <Compile Include="Widgets\TranslatorWidget.xaml.cs">
       <DependentUpon>TranslatorWidget.xaml</DependentUpon>
     </Compile>

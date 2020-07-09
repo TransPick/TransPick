@@ -2,16 +2,14 @@
 using GameOverlay.Windows;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TransPick.Unmanaged;
 using TransPick.Unmanaged.Types;
 
-namespace TransPick.Selectors
+namespace TransPick.Highlighters
 {
-    internal class FixedAreaSelector : IDisposable
-    {
+	internal class ControlHighlighter : IDisposable
+	{
 		#region ::Fields::
 
 		private readonly GraphicsWindow _window;
@@ -19,20 +17,16 @@ namespace TransPick.Selectors
 		private readonly Dictionary<string, SolidBrush> _brushes;
 		private readonly Dictionary<string, Font> _fonts;
 
-		private readonly int _width = 0;
-		private readonly int _height = 0;
 		private readonly bool _isShowInfos = false;
 
 		#endregion
 
 		#region ::Constructor::
 
-		internal FixedAreaSelector(int width, int height, bool isShowInfos)
+		internal ControlHighlighter(bool isShowInfos)
 		{
 			_brushes = new Dictionary<string, SolidBrush>();
 			_fonts = new Dictionary<string, Font>();
-			_width = width;
-			_height = height;
 			_isShowInfos = isShowInfos;
 
 			var gfx = new Graphics()
@@ -120,18 +114,21 @@ namespace TransPick.Selectors
 				gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["green"], _brushes["grid"], 20, 20, infoText);
 			}
 
-			System.Drawing.Point cursorPoint = InputDevices.GetCursorPoint();
+			// Get control information.
+			IntPtr hWnd = Window.WindowFromPoint(InputDevices.GetCursorPoint());
+			RECT rect = new RECT();
+		    Window.GetWindowRect(hWnd, out rect);
 
 			// Draw objects.
-			gfx.DrawRectangle(_brushes["red"], cursorPoint.X, cursorPoint.Y, cursorPoint.X + _width, cursorPoint.Y + _height, 2.0f);
-			gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], cursorPoint.X + 6, cursorPoint.Y + 6, $"{_width} X {_height}");
+			gfx.DrawRectangle(_brushes["red"], rect.Left, rect.Top, rect.Right, rect.Bottom, 2.0f);
+			gfx.DrawTextWithBackground(_fonts["consolas"], _brushes["red"], _brushes["white"], rect.Left + 6, rect.Top + 6, $"{rect.Right-rect.Left} X {rect.Bottom-rect.Top}");
 		}
 
 		#endregion
 
 		#region ::IDisposable Support::
 
-		~FixedAreaSelector()
+		~ControlHighlighter()
 		{
 			Dispose(false);
 		}
