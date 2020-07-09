@@ -29,13 +29,19 @@ namespace TransPick.Capturers
                 int bottomLimit = Display.GetBottom();
 
                 if (leftUpperPoint.X < leftLimit || leftUpperPoint.Y < topLimit || leftUpperPoint.X > rightLimit || leftUpperPoint.Y > bottomLimit)
+                {
                     throw new ArgumentOutOfRangeException($"The specified LeftUpperPoint is out of screen range(Input: {leftUpperPoint.X}, {leftUpperPoint.Y}, Minimum: {leftLimit}, {topLimit}, Maximum: {rightLimit}, {bottomLimit}).");
+                }
 
                 if (leftUpperPoint.X + size.Width > Display.GetWidth())
+                {
                     throw new ArgumentOutOfRangeException($"The horizontal size of the specified area exceeds the screen range(Input: {size.Width}, Maximum: {Display.GetWidth()}).");
+                }
 
                 if (leftUpperPoint.Y + size.Height > Display.GetHeight())
+                {
                     throw new ArgumentOutOfRangeException($"The vertical size of the specified area exceeds the screen range(Input: {size.Height}, Maximum: {Display.GetHeight()}).");
+                }
 
                 BitmapImage bitmap = new BitmapImage();
 
@@ -66,9 +72,9 @@ namespace TransPick.Capturers
 
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -91,13 +97,19 @@ namespace TransPick.Capturers
                 int bottomLimit = Display.GetBottom();
 
                 if (left < leftLimit || top < topLimit || right > rightLimit || bottom > bottomLimit)
+                {
                     throw new ArgumentOutOfRangeException($"The specified LeftUpperPoint is out of screen range(Input(LTRB): {left}, {top}, {right}, {bottom}, Minimum: {leftLimit}, {topLimit}, Maximum: {rightLimit}, {bottomLimit}).");
+                }
 
                 if (right - left > Display.GetWidth())
+                {
                     throw new ArgumentOutOfRangeException($"The horizontal size of the specified area exceeds the screen range(Input: {right - left}, Maximum: {Display.GetWidth()}).");
+                }
 
                 if (bottom - top > Display.GetHeight())
+                {
                     throw new ArgumentOutOfRangeException($"The vertical size of the specified area exceeds the screen range(Input: {bottom - top}, Maximum: {Display.GetHeight()}).");
+                }
 
                 BitmapImage bitmap = new BitmapImage();
 
@@ -128,9 +140,9 @@ namespace TransPick.Capturers
 
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

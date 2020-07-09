@@ -58,7 +58,7 @@ namespace TransPick.Utilities
         /// <summary>
         /// Specify whether this object is disposed.
         /// </summary>
-        bool disposed = false;
+        bool disposed;
 
         /// <summary>
         /// This constant could be found in WinUser.h if you installed Windows SDK.
@@ -97,10 +97,10 @@ namespace TransPick.Utilities
                 throw new ArgumentException("The key or modifiers could not be None.");
             }
 
-            this.Handle = handle;
-            this.ID = id;
-            this.Modifiers = modifiers;
-            this.Key = key;
+            Handle = handle;
+            ID = id;
+            Modifiers = modifiers;
+            Key = key;
 
             RegisterHotKey();
 
@@ -131,7 +131,7 @@ namespace TransPick.Utilities
                 // used in another thread or process.
                 if (!isKeyRegisterd)
                 {
-                    throw new ApplicationException("The hotkey is in use");
+                    throw new InvalidOperationException("The hotkey is in use");
                 }
             }
         }
@@ -145,8 +145,8 @@ namespace TransPick.Utilities
             // The property WParam of Message is typically used to store small pieces
             // of information. In this scenario, it stores the ID.
             if (m.Msg == WM_HOTKEY
-            && m.HWnd == this.Handle
-            && m.WParam == (IntPtr)this.ID
+            && m.HWnd == Handle
+            && m.WParam == (IntPtr)ID
             && HotKeyPressed != null)
             {
                 // Raise the HotKeyPressed event if it is an WM_HOTKEY message.

@@ -19,15 +19,15 @@ namespace TransPick.Highlighters
 		private readonly Dictionary<string, SolidBrush> _brushes;
 		private readonly Dictionary<string, Font> _fonts;
 
-		private readonly bool _isShowInfo = false;
+		private readonly bool _isShowInfo;
 
-		private bool _isSetFirstPoint = false;
-		private bool _isSetSecondPoint = false;
+		private bool _isSetFirstPoint;
+		private bool _isSetSecondPoint;
 
-		private int _firstX = 0;
-		private int _secondX = 0;
-		private int _firstY = 0;
-		private int _secondY = 0;
+		private int _firstX;
+		private int _secondX;
+		private int _firstY;
+		private int _secondY;
 
 		#endregion
 
@@ -39,12 +39,10 @@ namespace TransPick.Highlighters
 			_fonts = new Dictionary<string, Font>();
 			_isShowInfo = isShowInfo;
 
-			var gfx = new Graphics()
-			{
-				MeasureFPS = true,
-				PerPrimitiveAntiAliasing = true,
-				TextAntiAliasing = true
-			};
+			Graphics gfx = new Graphics();
+		    gfx.MeasureFPS = true;
+			gfx.PerPrimitiveAntiAliasing = true;
+			gfx.TextAntiAliasing = true;
 
 			// Initialize GraphicWindow
 			_window = new GraphicsWindow(Display.GetLeft(), Display.GetTop(), Display.GetWidth(), Display.GetHeight(), gfx)
@@ -98,7 +96,10 @@ namespace TransPick.Highlighters
 
 			if (e.RecreateResources)
 			{
-				foreach (var pair in _brushes) pair.Value.Dispose();
+				foreach (var pair in _brushes)
+				{
+					pair.Value.Dispose();
+				}
 			}
 
 			// Add brushes.
@@ -110,7 +111,10 @@ namespace TransPick.Highlighters
 			_brushes["background"] = gfx.CreateSolidBrush(0, 0, 0, 0.1f);
 			_brushes["grid"] = gfx.CreateSolidBrush(0, 0, 0, 0.5f);
 
-			if (e.RecreateResources) return;
+			if (e.RecreateResources)
+			{
+				return;
+			}
 
 			// Add fonts.
 			_fonts["arial"] = gfx.CreateFont("Arial", 12);
@@ -119,8 +123,15 @@ namespace TransPick.Highlighters
 
 		private void OnDestroyGraphics(object sender, DestroyGraphicsEventArgs e)
 		{
-			foreach (var pair in _brushes) pair.Value.Dispose();
-			foreach (var pair in _fonts) pair.Value.Dispose();
+			foreach (var pair in _brushes)
+			{
+				pair.Value.Dispose();
+			}
+
+			foreach (var pair in _fonts)
+			{
+				pair.Value.Dispose();
+			}
 		}
 
 		private void OnDrawGraphics(object sender, DrawGraphicsEventArgs e)

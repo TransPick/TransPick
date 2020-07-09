@@ -23,7 +23,7 @@ namespace TransPick.Capturers
             try
             {
                 // Stores the size of the window area to be captured in Rectangle.
-                Rectangle rectangle = Rectangle.Empty;
+                Rectangle rectangle;
                 Graphics windowGraphics = Graphics.FromHwnd(hWnd);
                 rectangle = Rectangle.Round(windowGraphics.VisibleClipBounds);
 
@@ -69,9 +69,9 @@ namespace TransPick.Capturers
 
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -88,9 +88,11 @@ namespace TransPick.Capturers
                 IntPtr hWnd = Window.FindWindow(null, windowTitle);
 
                 if (!Window.IsWindowHandleExists(hWnd))
-                    throw new Exception($"The handle for the specified window could not be found(Title: {windowTitle}, Handle: {hWnd}).");
+                {
+                    throw new InvalidOperationException($"The handle for the specified window could not be found(Title: {windowTitle}, Handle: {hWnd}).");
+                }
 
-                Rectangle rectangle = Rectangle.Empty;
+                Rectangle rectangle;
                 Graphics windowGraphics = Graphics.FromHwnd(hWnd);
                 rectangle = Rectangle.Round(windowGraphics.VisibleClipBounds);
 
@@ -136,9 +138,9 @@ namespace TransPick.Capturers
 
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

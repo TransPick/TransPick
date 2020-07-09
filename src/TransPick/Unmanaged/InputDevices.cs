@@ -18,9 +18,13 @@ namespace TransPick.Unmanaged
             Point point;
 
             if (GetCursorPos(out point))
+            {
                 return point;
+            }
             else
-                throw new Exception("Unable to get mouse pointer position.");
+            {
+                throw new InvalidOperationException("Unable to get mouse cursor position.");
+            }
         }
     }
 }

@@ -20,11 +20,15 @@ namespace TransPick.Utilities
         {
             // Uri format checking.
             if (Uri.IsWellFormedUriString(filePath, UriKind.RelativeOrAbsolute))
+            {
                 throw new UriFormatException($"Invalid format of file path({filePath}).");
+            }
 
             // If the file directory does not exist, creates the directory.
             if (!Directory.Exists(Path.GetDirectoryName(filePath)))
+            {
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+            }
 
             try
             {
@@ -32,17 +36,29 @@ namespace TransPick.Utilities
 
                 // Sets the file format.
                 if (bitmapFormat == BitmapFormat.Bmp)
+                {
                     encoder = new BmpBitmapEncoder();
+                }
                 else if (bitmapFormat == BitmapFormat.Gif)
+                {
                     encoder = new GifBitmapEncoder();
+                }
                 else if (bitmapFormat == BitmapFormat.Jpeg)
+                {
                     encoder = new JpegBitmapEncoder();
+                }
                 else if (bitmapFormat == BitmapFormat.Png)
+                {
                     encoder = new PngBitmapEncoder();
+                }
                 else if (bitmapFormat == BitmapFormat.Tiff)
+                {
                     encoder = new TiffBitmapEncoder();
+                }
                 else if (bitmapFormat == BitmapFormat.Wmp)
+                {
                     encoder = new WmpBitmapEncoder();
+                }
 
                 encoder.Frames.Add(BitmapFrame.Create(image));
 
@@ -53,7 +69,10 @@ namespace TransPick.Utilities
                     stream.Close();
                 }
             }
-            catch(Exception) { }
+            catch(Exception)
+            {
+                throw;
+            }
         }
     }
 }

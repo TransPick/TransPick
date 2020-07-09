@@ -17,17 +17,25 @@ namespace TransPick.Unmanaged
         internal static bool IsMultiMonitorSupport()
         {
             if (System.GetSystemMetrics(SystemMetric.SM_CMONITORS) == 0)
+            {
                 return false;
+            }
             else
+            {
                 return true;
+            }
         }
 
         internal static bool IsSameDisplayFormat()
         {
             if (System.GetSystemMetrics(SystemMetric.SM_SAMEDISPLAYFORMAT) != 0)
-                return true;
-            else
+            {
                 return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         internal static int GetMonitorCount()

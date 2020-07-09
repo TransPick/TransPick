@@ -17,7 +17,7 @@ namespace TransPick.Highlighters
 		private readonly Dictionary<string, SolidBrush> _brushes;
 		private readonly Dictionary<string, Font> _fonts;
 
-		private readonly bool _isShowInfos = false;
+		private readonly bool _isShowInfos;
 
 		#endregion
 
@@ -29,12 +29,10 @@ namespace TransPick.Highlighters
 			_fonts = new Dictionary<string, Font>();
 			_isShowInfos = isShowInfos;
 
-			var gfx = new Graphics()
-			{
-				MeasureFPS = true,
-				PerPrimitiveAntiAliasing = true,
-				TextAntiAliasing = true
-			};
+			Graphics gfx = new Graphics();
+			gfx.MeasureFPS = true;
+			gfx.PerPrimitiveAntiAliasing = true;
+			gfx.TextAntiAliasing = true;
 
 			// Initialize GraphicWindow
 			_window = new GraphicsWindow(Display.GetLeft(), Display.GetTop(), Display.GetWidth(), Display.GetHeight(), gfx)
@@ -70,7 +68,10 @@ namespace TransPick.Highlighters
 
 			if (e.RecreateResources)
 			{
-				foreach (var pair in _brushes) pair.Value.Dispose();
+				foreach (var pair in _brushes)
+				{
+					pair.Value.Dispose();
+				}
 			}
 
 			// Add brushes.
@@ -82,7 +83,10 @@ namespace TransPick.Highlighters
 			_brushes["background"] = gfx.CreateSolidBrush(0, 0, 0, 0);
 			_brushes["grid"] = gfx.CreateSolidBrush(0, 0, 0, 0.5f);
 
-			if (e.RecreateResources) return;
+			if (e.RecreateResources)
+			{
+				return;
+			}
 
 			// Add fonts.
 			_fonts["arial"] = gfx.CreateFont("Arial", 12);
@@ -91,8 +95,15 @@ namespace TransPick.Highlighters
 
 		private void DestroyGraphics(object sender, DestroyGraphicsEventArgs e)
 		{
-			foreach (var pair in _brushes) pair.Value.Dispose();
-			foreach (var pair in _fonts) pair.Value.Dispose();
+			foreach (var pair in _brushes)
+			{
+				pair.Value.Dispose();
+			}
+
+			foreach (var pair in _fonts)
+			{
+				pair.Value.Dispose();
+			}
 		}
 
 		private void DrawGraphics(object sender, DrawGraphicsEventArgs e)
@@ -116,7 +127,7 @@ namespace TransPick.Highlighters
 
 			// Get control information.
 			IntPtr hWnd = Window.WindowFromPoint(InputDevices.GetCursorPoint());
-			RECT rect = new RECT();
+			RECT rect;
 		    Window.GetWindowRect(hWnd, out rect);
 
 			// Draw objects.

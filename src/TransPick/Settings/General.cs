@@ -12,12 +12,14 @@ namespace TransPick.Settings
 
         // Singleton pattern to store settings
         [NonSerialized]
-        private static General _instance = null;
+        private static General _instance;
 
         internal static General GetInstance()
         {
             if (_instance == null)
+            {
                 _instance = new General();
+            }
 
             return _instance;
         }
@@ -27,7 +29,7 @@ namespace TransPick.Settings
         #region ::Fields::
 
         [NonSerialized]
-        private bool _isDeserialized = false;
+        private bool _isDeserialized;
 
         internal bool IsDeserialized
         {

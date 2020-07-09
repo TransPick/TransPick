@@ -11,7 +11,7 @@ namespace TransPick.Capturers
     /// <summary>
     /// A class that provides control capture feature.
     /// </summary>
-    class ControlCapturer
+    internal static class ControlCapturer
     {
         /// <summary>
         /// Captures a control under the cursor.
@@ -24,7 +24,7 @@ namespace TransPick.Capturers
                 // Stores the size of the control area to be captured in Rectangle.
                 IntPtr hWnd = Window.WindowFromPoint(InputDevices.GetCursorPoint());
 
-                Rectangle rectangle = Rectangle.Empty;
+                Rectangle rectangle;
                 Graphics windowGraphics = Graphics.FromHwnd(hWnd);
                 rectangle = Rectangle.Round(windowGraphics.VisibleClipBounds);
 
@@ -70,9 +70,9 @@ namespace TransPick.Capturers
 
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

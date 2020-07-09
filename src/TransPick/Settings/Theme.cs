@@ -10,12 +10,14 @@ namespace TransPick.Settings
 
         // Singleton pattern to store settings
         [NonSerialized]
-        private static Theme _instance = null;
+        private static Theme _instance;
 
         internal static Theme GetInstance()
         {
             if (_instance == null)
+            {
                 _instance = new Theme();
+            }
 
             return _instance;
         }
@@ -25,7 +27,7 @@ namespace TransPick.Settings
         #region ::Application Theme Properties::
 
         [NonSerialized]
-        private bool _isDeserialized = false;
+        private bool _isDeserialized;
 
         internal bool IsDeserialized
         {
@@ -35,7 +37,7 @@ namespace TransPick.Settings
             }
         }
 
-        private bool _isUsingDarkMode = false;
+        private bool _isUsingDarkMode;
 
         internal bool IsUsingDarkMode
         {

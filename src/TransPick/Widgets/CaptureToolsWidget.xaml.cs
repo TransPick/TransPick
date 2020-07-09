@@ -46,22 +46,6 @@ namespace TransPick.Widgets
         private void OnWidgetClick(object sender, MouseButtonEventArgs e)
         {
             DragMove();
-
-            // RunAreaCaptureProcessAsync();
         }
-
-        /*
-        private async void RunAreaCaptureProcessAsync()
-        {
-            using (AreaSelector selector = new AreaSelector(true))
-            {
-                var task = Task.Run(() => selector.Run());
-                Rect rect = await task;
-
-                BitmapImage bitmap = AreaCapturer.Capture((int)rect.Left, (int)rect.Top, (int)rect.Right, (int)rect.Bottom);
-                bitmap.Save(@"E:\", BitmapFormat.Png);
-            }
-        }
-        */
     }
 }

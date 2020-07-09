@@ -51,9 +51,9 @@ namespace TransPick.Capturers
 
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -67,7 +67,9 @@ namespace TransPick.Capturers
             try
             {
                 if (screen == null)
-                    throw new NullReferenceException();
+                {
+                    throw new ArgumentNullException("The screen cannot be a null value.");
+                }
 
                 BitmapImage bitmap = new BitmapImage();
 
@@ -96,9 +98,9 @@ namespace TransPick.Capturers
 
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

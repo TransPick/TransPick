@@ -82,9 +82,13 @@ namespace TransPick.Unmanaged
         internal static bool IsWindowHandleExists(IntPtr hWnd)
         {
             if (hWnd.Equals(0))
+            {
                 return false;
+            }
             else
+            {
                 return true;
+            }
         }
     }
 }
