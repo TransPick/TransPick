@@ -1,4 +1,8 @@
-# TransPick
+# TransPick 
+![AppVeyor](https://img.shields.io/appveyor/build/junimiso04/TransPick?style=flat-square)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/junimiso04/TransPick?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/junimiso04/TransPick?style=flat-square)
+![GitHub](https://img.shields.io/github/license/junimiso04/TransPick?style=flat-square)
  
 ## Overview
 TransPick is a translator that provides screen translation feature using OCR.
