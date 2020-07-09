@@ -31,10 +31,10 @@ Developers can use the interfaces included in the library to implement extension
 
 ## Licenses
  * [TransPick License](LICENSE)(MIT License)
- * [GameOverlay.Net](https://github.com/michel-pi/GameOverlay.Net/blob/master/LICENSE)(MIT License)
+ * [GameOverlay.Net License](https://github.com/michel-pi/GameOverlay.Net/blob/master/LICENSE)(MIT License)
  * [Json.NET License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)(MIT License)
- * [MaterialDesignInXamlToolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE)(MIT License)
- * [SharpDX](https://github.com/sharpdx/SharpDX/blob/master/LICENSE)(MIT License)
+ * [MaterialDesignInXamlToolkit License](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/blob/master/LICENSE)(MIT License)
+ * [SharpDX License](https://github.com/sharpdx/SharpDX/blob/master/LICENSE)(MIT License)
 
 ## Contributors
 손형준(Hyeong-jun Son aka junimiso04)(junimiso04@naver.com) - **Main Developer**
