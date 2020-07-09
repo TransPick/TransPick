@@ -1,11 +1,13 @@
 # TransPick 
 ![AppVeyor](https://img.shields.io/appveyor/build/junimiso04/TransPick?style=flat-square)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/junimiso04/TransPick?style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/junimiso04/TransPick?style=flat-square)
-![GitHub](https://img.shields.io/github/license/junimiso04/TransPick?style=flat-square)
+![Codacy grade](https://img.shields.io/codacy/grade/3cebbac52b8e4fcfbb0bd0fa4cd76e2b?style=flat-square)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TransPick/TransPick?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/TransPick/TransPick?style=flat-square)
+![GitHub](https://img.shields.io/github/license/TransPick/TransPick?style=flat-square)
  
 ## Overview
 TransPick is a translator that provides screen translation feature using OCR.
+ **This application is still under development.**
 
 ## Description
 TransPick works with the process below.
@@ -22,7 +24,11 @@ Unmanaged functions included in "user32.dll" or "gdi32.dll" are also used in thi
 All functions related to OCR and translator are implemented through the **TransPick.Extension** library.
 Developers can use the interfaces included in the library to implement extension features.
 
-## License
+## TO-DO
+ * [ ] Complete developing the first release version.
+ * [ ] Improving code quality.
+
+## Licenses
  * [TransPick License](LICENSE)(MIT License)
  * [GameOverlay.Net](https://github.com/michel-pi/GameOverlay.Net/blob/master/LICENSE)(MIT License)
  * [Json.NET License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)(MIT License)
@@ -31,3 +37,6 @@ Developers can use the interfaces included in the library to implement extension
 
 ## Contributors
 손형준(Hyeong-jun Son aka junimiso04)(junimiso04@naver.com) - **Main Developer**
+
+## Contacts
+If you have any questions about this repository, please use GitHub Issues.
