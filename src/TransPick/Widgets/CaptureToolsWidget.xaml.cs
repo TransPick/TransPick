@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
@@ -48,6 +49,8 @@ namespace TransPick.Widgets
         private void OnWidgetClick(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+
+            AreaSelector selector = new AreaSelector();
         }
     }
 }

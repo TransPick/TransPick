@@ -100,6 +100,7 @@
     <Compile Include="Selectors\ScreenSelector.cs" />
     <Compile Include="Unmanaged\Types\KeyModifier.cs" />
     <Compile Include="Unmanaged\Types\RegionFlags.cs" />
+    <Compile Include="Unmanaged\Types\ShowWindowCommands.cs" />
     <Compile Include="Unmanaged\Types\SystemMetric.cs" />
     <Compile Include="Unmanaged\Types\VKeys.cs" />
     <Compile Include="Unmanaged\Types\MonitorInfoEx.cs" />

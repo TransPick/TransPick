@@ -112,7 +112,7 @@ namespace TransPick.Settings
             _brushRegistry.Add("red", new GameOverlay.Drawing.Color(255, 0, 0));
             _brushRegistry.Add("green", new GameOverlay.Drawing.Color(0, 255, 0));
             _brushRegistry.Add("blue", new GameOverlay.Drawing.Color(0, 0, 255));
-            _brushRegistry.Add("background", new GameOverlay.Drawing.Color(0, 0, 0, 0.1f));
+            _brushRegistry.Add("background", new GameOverlay.Drawing.Color(0, 0, 0, 0));
             _brushRegistry.Add("grid", new GameOverlay.Drawing.Color(0, 0, 0, 0.5f));
 
             // Add fonts to temp registry.
