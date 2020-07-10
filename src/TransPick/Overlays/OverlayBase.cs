@@ -25,7 +25,7 @@ namespace TransPick.Overlays
             }
         }
 
-		private Dictionary<string, SolidBrush> _brushes = new Dictionary<string, SolidBrush>();
+		private readonly Dictionary<string, SolidBrush> _brushes = new Dictionary<string, SolidBrush>();
 
 		internal Dictionary<string, SolidBrush> Brushes
         {
@@ -35,9 +35,9 @@ namespace TransPick.Overlays
             }
         }
 
-		private Dictionary<string, Color> _brushRegistry = Theme.GetInstance().BrushRegistry;
+		private readonly Dictionary<string, Color> _brushRegistry = Theme.GetInstance().BrushRegistry;
 
-		private Dictionary<string, Font> _fonts = new Dictionary<string, Font>();
+		private readonly Dictionary<string, Font> _fonts = new Dictionary<string, Font>();
 
 		internal Dictionary<string, Font> Fonts
         {
@@ -47,7 +47,7 @@ namespace TransPick.Overlays
             }
         }
 
-		private Dictionary<string, Font> _fontRegistry = Theme.GetInstance().FontRegistry;
+		private readonly Dictionary<string, Font> _fontRegistry = Theme.GetInstance().FontRegistry;
 
 		private readonly bool _isShowInfo;
 
@@ -62,30 +62,7 @@ namespace TransPick.Overlays
 
 		#region ::Constructors::
 
-		internal OverlayBase(DrawingGraphicsDelegate drawingDelegate)
-		{
-			Graphics gfx = new Graphics();
-			gfx.MeasureFPS = true;
-			gfx.PerPrimitiveAntiAliasing = true;
-			gfx.TextAntiAliasing = true;
-
-			// Initialize GraphicWindow
-			_window = new GraphicsWindow(Display.GetLeft(), Display.GetTop(), Display.GetWidth(), Display.GetHeight(), gfx)
-			{
-				FPS = 60,
-				IsTopmost = true,
-				IsVisible = true
-			};
-
-			_drawGraphics = drawingDelegate;
-
-			// Subscribe the GraphicWindow event.
-			_window.SetupGraphics += OnSetupGraphics;
-			_window.DrawGraphics += OnDrawGraphics;
-			_window.DestroyGraphics += OnDestroyGraphics;
-		}
-
-		internal OverlayBase(DrawingGraphicsDelegate drawDelegate, bool isShowInfo)
+		internal OverlayBase(DrawingGraphicsDelegate drawingDelegate, bool isShowInfo)
 		{
 			_isShowInfo = isShowInfo;
 
@@ -102,7 +79,7 @@ namespace TransPick.Overlays
 				IsVisible = true
 			};
 
-			_drawGraphics = drawDelegate;
+			_drawGraphics = drawingDelegate;
 
 			// Subscribe the GraphicWindow event.
 			_window.SetupGraphics += OnSetupGraphics;
@@ -135,10 +112,10 @@ namespace TransPick.Overlays
 					}
                     else
                     {
-						await Task.Delay(10);
+						await Task.Delay(10).ConfigureAwait(false);
                     }
 				}
-			});
+			}).ConfigureAwait(false);
 
 			return false;
 		}
@@ -266,7 +243,6 @@ namespace TransPick.Overlays
 		{
 			if (!_disposeValue)
 			{
-				//_window.;
 				_window.Dispose();
 
 				_disposeValue = true;
