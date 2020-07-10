@@ -1,9 +1,9 @@
 # TransPick 
-![AppVeyor](https://img.shields.io/appveyor/build/junimiso04/TransPick?style=flat-square)
-![Codacy grade](https://img.shields.io/codacy/grade/3cebbac52b8e4fcfbb0bd0fa4cd76e2b?style=flat-square)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TransPick/TransPick?style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/TransPick/TransPick?style=flat-square)
-![GitHub](https://img.shields.io/github/license/TransPick/TransPick?style=flat-square)
+[![AppVeyor](https://img.shields.io/appveyor/build/junimiso04/TransPick?style=flat-square)](https://ci.appveyor.com/project/junimiso04/transpick "Go to Appveyor build history page.")
+[![Codacy grade](https://img.shields.io/codacy/grade/3cebbac52b8e4fcfbb0bd0fa4cd76e2b?style=flat-square)](https://app.codacy.com/gh/TransPick/TransPick/dashboard "Go to Codacy Dashboard.")
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TransPick/TransPick?style=flat-square)](https://github.com/TransPick/TransPick)
+[![GitHub issues](https://img.shields.io/github/issues/TransPick/TransPick?style=flat-square)](https://github.com/TransPick/TransPick/issues "Go to GitHub issues page.")
+[![GitHub](https://img.shields.io/github/license/TransPick/TransPick?style=flat-square)](LICENSE)
  
 ## Overview
 NOTICE :  **This application is still in development.**
@@ -27,7 +27,7 @@ Developers can use the interfaces included in the library to implement extension
 
 ## TO-DO
  * [ ] Complete developing the first release version.
- * [ ] Improving code quality.
+ * [x] Improving code quality.
 
 ## Licenses
  * [TransPick License](LICENSE)(MIT License)
