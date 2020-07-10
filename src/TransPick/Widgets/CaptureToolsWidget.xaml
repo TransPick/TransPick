@@ -37,12 +37,6 @@
                     </ComboBoxItem>
                     <ComboBoxItem>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Foreground="{DynamicResource MaterialDesignBodyLight}" Opacity=".50" Kind="WindowMaximize" Width="20" Height="20"/>
-                            <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="4 0 0 0" Opacity=".86" VerticalAlignment="Center">Window</TextBlock>
-                        </StackPanel>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Foreground="{DynamicResource MaterialDesignBodyLight}" Opacity=".50" Kind="MonitorScreenshot" Width="20" Height="20"/>
                             <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="4 0 0 0" Opacity=".86" VerticalAlignment="Center">Screen</TextBlock>
                         </StackPanel>

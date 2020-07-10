@@ -7,7 +7,6 @@
     {
         AllScreen,
         SelectedScreen,
-        Window,
         Control,
         Area,
         FixedArea

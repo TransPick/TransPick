@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SharpDX.DirectWrite;
+using System;
+using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace TransPick.Settings
@@ -26,7 +28,6 @@ namespace TransPick.Settings
 
         #region ::Application Theme Properties::
 
-        [NonSerialized]
         private bool _isDeserialized;
 
         internal bool IsDeserialized
@@ -79,14 +80,55 @@ namespace TransPick.Settings
             }
         }
 
+        private Dictionary<string, GameOverlay.Drawing.Color> _brushRegistry = new Dictionary<string, GameOverlay.Drawing.Color>();
+
+        internal Dictionary<string, GameOverlay.Drawing.Color> BrushRegistry
+        {
+            get
+            {
+                return _brushRegistry;
+            }
+        }
+
+        private Dictionary<string, GameOverlay.Drawing.Font> _fontRegistry = new Dictionary<string, GameOverlay.Drawing.Font>();
+
+        internal Dictionary<string, GameOverlay.Drawing.Font> FontRegistry
+        {
+            get
+            {
+                return _fontRegistry;
+            }
+        }
+
         #endregion
 
         #region ::Constructors::
 
-        internal Theme() { }
+        private void InitializeElements()
+        {
+            // Add brushes to temp registry.
+            _brushRegistry.Add("black", new GameOverlay.Drawing.Color(0, 0, 0));
+            _brushRegistry.Add("white", new GameOverlay.Drawing.Color(255, 255, 255));
+            _brushRegistry.Add("red", new GameOverlay.Drawing.Color(255, 0, 0));
+            _brushRegistry.Add("green", new GameOverlay.Drawing.Color(0, 255, 0));
+            _brushRegistry.Add("blue", new GameOverlay.Drawing.Color(0, 0, 255));
+            _brushRegistry.Add("background", new GameOverlay.Drawing.Color(0, 0, 0, 0.1f));
+            _brushRegistry.Add("grid", new GameOverlay.Drawing.Color(0, 0, 0, 0.5f));
+
+            // Add fonts to temp registry.
+            _fontRegistry.Add("arial-12", new GameOverlay.Drawing.Font(new Factory1(FactoryType.Isolated), "Arial", 12));
+            _fontRegistry.Add("consolas-14", new GameOverlay.Drawing.Font(new Factory1(FactoryType.Isolated), "Consolas", 14));
+        }
+
+        internal Theme()
+        {
+            InitializeElements();
+        }
 
         internal Theme(bool isUsingDarkMode, Color primaryColor, Color secondaryColor)
         {
+            InitializeElements();
+
             _isUsingDarkMode = isUsingDarkMode;
             _primaryColor = primaryColor;
             _secondaryColor = secondaryColor;
