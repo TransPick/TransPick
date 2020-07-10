@@ -1,18 +1,10 @@
 ﻿using GameOverlay.Windows;
 using TransPick.Unmanaged;
 
-namespace TransPick.Overlays
+namespace TransPick.Overlays.Highlighter
 {
-	internal class CrossHair
+	internal class CrossHair : Highlighter
 	{
-		#region ::Fields::
-
-		private OverlayBase _overlay;
-
-		private readonly bool _isShowInfo;
-
-		#endregion
-
 		#region ::Constructor::
 
 		internal CrossHair(bool isShowInfo)
@@ -24,7 +16,7 @@ namespace TransPick.Overlays
 
 		#region ::Overlay Drawer::
 
-		private void DrawGraphics(object sender, DrawGraphicsEventArgs e)
+		protected override void DrawGraphics(object sender, DrawGraphicsEventArgs e)
 		{
 			var gfx = e.Graphics;
 			var brushes = _overlay.Brushes;
@@ -41,29 +33,5 @@ namespace TransPick.Overlays
 		}
 
 		#endregion
-
-		#region ::Highlighter Starting & Stopping Methods::
-
-		internal void Start()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			_overlay.Run();
-		}
-
-		internal async void StartAsync()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			var result = await _overlay.RunAsync();
-		}
-
-		internal void Stop()
-		{
-			if (_overlay != null)
-			{
-				_overlay.Dispose();
-			}
-		}
-
-        #endregion
     }
 }

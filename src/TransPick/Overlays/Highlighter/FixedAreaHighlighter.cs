@@ -2,21 +2,17 @@
 using TransPick.Unmanaged;
 using Point = System.Drawing.Point;
 
-namespace TransPick.Overlays
+namespace TransPick.Overlays.Highlighter
 {
-    internal class FixedAreaHighlighter
+    internal class FixedAreaHighlighter : Highlighter
     {
 		#region ::Fields::
-
-		private OverlayBase _overlay;
 
 		private bool _isPointFixed;
 		private Point _point = new Point();
 
 		private readonly int _width;
 		private readonly int _height;
-
-		private readonly bool _isShowInfo;
 
 		#endregion
 
@@ -33,7 +29,7 @@ namespace TransPick.Overlays
 
 		#region ::Overlay Drawer::
 
-		private void DrawGraphics(object sender, DrawGraphicsEventArgs e)
+		protected override void DrawGraphics(object sender, DrawGraphicsEventArgs e)
 		{
 			var gfx = e.Graphics;
 			var brushes = _overlay.Brushes;
@@ -58,30 +54,6 @@ namespace TransPick.Overlays
 				
 				// Draw area size box.
 				gfx.DrawTextWithBackground(fonts["crial-12"], brushes["red"], brushes["white"], _point.X + 6, _point.Y + 6, text);
-			}
-		}
-
-		#endregion
-
-		#region ::Highlighter Starting & Stopping Methods::
-
-		internal void Start()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			_overlay.Run();
-		}
-
-		internal async void StartAsync()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			var result = await _overlay.RunAsync();
-		}
-
-		internal void Stop()
-		{
-			if (_overlay != null)
-			{
-				_overlay.Dispose();
 			}
 		}
 

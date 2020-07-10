@@ -1,67 +1,97 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
+﻿using Gma.System.MouseKeyHook;
+using System.Windows.Forms;
+using TransPick.Overlays.Highlighter;
 using TransPick.Unmanaged;
-using TransPick.Unmanaged.Types;
-using Window = System.Windows.Window;
+using Point = System.Drawing.Point;
 
 namespace TransPick.Selectors
 {
     internal class AreaSelector
     {
-        Window _blind;
-        IntPtr _blindHandle;
+        #region ::Fields::
 
-        Timer _blindTimer = new Timer(10);
+        private readonly AreaHighlighter _highlighter = new AreaHighlighter(true);
 
-        internal AreaSelector()
+        private IKeyboardMouseEvents _globalHook;
+
+        private bool _isSetFirstPoint;
+        private bool _isSetSecondPoint;
+
+        private Point _firstPoint;
+        private Point _secondPoint;
+
+        #endregion;
+
+        #region ::Events::
+
+        internal delegate void AreaSelectedEventHandler();
+        internal event AreaSelectedEventHandler AreaSelectedEvent;
+
+        #endregion
+
+        #region ::Selector Starting & Stopping Methods::
+
+        public void Start()
         {
-            // Initializes blind window.
-            _blind = new Window();
-            _blind.Background = new SolidColorBrush(Color.FromArgb((byte)0.1f, 0, 0, 0));
+            // Subscribe event.
+            _globalHook = Hook.GlobalEvents();
+            _globalHook.MouseDownExt += OnGlobalHookMouseDown;
 
-            _blind.Left = Display.GetLeft();
-            _blind.Top = Display.GetTop();
-
-            _blind.Width = Display.GetWidth();
-            _blind.Height = Display.GetHeight();
-
-            _blind.MouseLeftButtonDown += OnMouseLeftButtonDown;
-            _blind.MouseLeftButtonUp += OnMouseLeftButtonUp;
-
-            // Sets blind window handle.
-            _blindHandle = new WindowInteropHelper(_blind).Handle;
-
-            // Starts Blind timer.
-            _blindTimer.Elapsed += OnBlindTimerTick;
-            _blindTimer.Enabled = true;
-            _blindTimer.Start();
+            _highlighter.StartAsync();
         }
 
-        private void OnBlindTimerTick(object sender, ElapsedEventArgs e)
+        public void Stop()
         {
-            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            // Unsubscribe event.
+            _globalHook.MouseDownExt -= OnGlobalHookMouseDown;
+
+            // Dispose global hook event.
+            _globalHook.Dispose();
+
+            _highlighter.Stop();
+        }
+
+        #endregion
+
+        #region ::Mouse Global Hook Event::
+
+        private void OnGlobalHookMouseDown(object sender, MouseEventExtArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
             {
-                Debug.WriteLine("WM_LBTN_DOWN");
+                if (!_isSetFirstPoint)
+                {
+                    _firstPoint = InputDevices.GetCursorPoint();
+                    _highlighter.SetFirstPoint(_firstPoint);
+                    _isSetFirstPoint = true;
+                }
+                else if (!_isSetSecondPoint)
+                {
+                    _secondPoint = InputDevices.GetCursorPoint();
+                    _highlighter.SetSecondPoint(_secondPoint);
+                    _isSetSecondPoint = true;
+
+                    AreaSelectedEvent?.Invoke();
+
+                    Stop();
+                }
             }
         }
 
-        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        #endregion
+
+        #region ::Area Point Related::
+
+        internal Point GetFirstPoint()
         {
-            
+            return _firstPoint;
         }
 
-        private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        internal Point GetSecondPoint()
         {
-            
+            return _secondPoint;
         }
+
+        #endregion
     }
 }

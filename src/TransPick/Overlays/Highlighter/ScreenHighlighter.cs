@@ -1,23 +1,11 @@
-﻿using GameOverlay.Drawing;
-using GameOverlay.Windows;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GameOverlay.Windows;
 using System.Windows.Forms;
 using TransPick.Unmanaged;
 
-namespace TransPick.Overlays
+namespace TransPick.Overlays.Highlighter
 {
-    internal class ScreenHighlighter
+    internal class ScreenHighlighter : Highlighter
     {
-		#region ::Fields::
-
-		private OverlayBase _overlay;
-
-		private readonly bool _isShowInfo;
-
-		#endregion
-
 		#region ::Constructor::
 
 		internal ScreenHighlighter( bool isShowInfo)
@@ -29,7 +17,7 @@ namespace TransPick.Overlays
 
 		#region ::Overlay Drawer::
 
-		private void DrawGraphics(object sender, DrawGraphicsEventArgs e)
+		protected override void DrawGraphics(object sender, DrawGraphicsEventArgs e)
 		{
 			var gfx = e.Graphics;
 			var brushes = _overlay.Brushes;
@@ -43,30 +31,6 @@ namespace TransPick.Overlays
 			// Draw area size box.
 			string text = $"{(screen.Primary ? "Primary" : "Sub")} | {screen.Bounds.Width} X {screen.Bounds.Height}";
 			gfx.DrawTextWithBackground(fonts["arial-12"], brushes["red"], brushes["white"], screen.Bounds.Left + 6, screen.Bounds.Top + 6, text);
-		}
-
-		#endregion
-
-		#region ::Highlighter Starting & Stopping Methods::
-
-		internal void Start()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			_overlay.Run();
-		}
-
-		internal async void StartAsync()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			var result = await _overlay.RunAsync();
-		}
-
-		internal void Stop()
-		{
-			if (_overlay != null)
-			{
-				_overlay.Dispose();
-			}
 		}
 
 		#endregion

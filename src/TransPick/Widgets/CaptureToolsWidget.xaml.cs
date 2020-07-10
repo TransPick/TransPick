@@ -49,8 +49,23 @@ namespace TransPick.Widgets
         private void OnWidgetClick(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+            StartAreaSelector();
+        }
 
+        private void StartAreaSelector()
+        {
             AreaSelector selector = new AreaSelector();
+            selector.AreaSelectedEvent += new AreaSelector.AreaSelectedEventHandler(() =>
+            {
+                selector.Stop();
+
+                if (selector.GetFirstPoint().X <= selector.GetSecondPoint().X)
+                {
+                    AreaCapturer.Capture(PropertyCalculator.GetLeftUpperPoint(selector.GetFirstPoint(), selector.GetSecondPoint()), new Size(PropertyCalculator.GetWidth(selector.GetFirstPoint().X, selector.GetSecondPoint().X), PropertyCalculator.GetWidth(selector.GetFirstPoint().Y, selector.GetSecondPoint().Y))).Save(@"E:\test.png", BitmapFormat.Png);
+                }
+            });
+
+            selector.Start();
         }
     }
 }

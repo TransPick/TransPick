@@ -3,18 +3,10 @@ using System;
 using TransPick.Unmanaged;
 using TransPick.Unmanaged.Types;
 
-namespace TransPick.Overlays
+namespace TransPick.Overlays.Highlighter
 {
-	internal class ControlHighlighter
+	internal class ControlHighlighter : Highlighter
 	{
-		#region ::Fields::
-
-		private OverlayBase _overlay;
-
-		private readonly bool _isShowInfo;
-
-		#endregion
-
 		#region ::Constructor::
 
 		internal ControlHighlighter(bool isShowInfo)
@@ -26,7 +18,7 @@ namespace TransPick.Overlays
 
 		#region ::Overlay Drawer::
 
-		private void DrawGraphics(object sender, DrawGraphicsEventArgs e)
+		protected override void DrawGraphics(object sender, DrawGraphicsEventArgs e)
 		{
 			var gfx = e.Graphics;
 			var brushes = _overlay.Brushes;
@@ -43,30 +35,6 @@ namespace TransPick.Overlays
 			// Draw area size box.
 			string text = $"{rect.Right - rect.Left} X {rect.Bottom - rect.Top}";
 			gfx.DrawTextWithBackground(fonts["arial-12"], brushes["red"], brushes["white"], rect.Left + 6, rect.Top + 6, text);
-		}
-
-		#endregion
-
-		#region ::Highlighter Starting & Stopping Methods::
-
-		internal void Start()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			_overlay.Run();
-		}
-
-		internal async void StartAsync()
-		{
-			_overlay = new OverlayBase(DrawGraphics, _isShowInfo);
-			var result = await _overlay.RunAsync();
-		}
-
-		internal void Stop()
-		{
-			if (_overlay != null)
-			{
-				_overlay.Dispose();
-			}
 		}
 
 		#endregion
