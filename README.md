@@ -37,7 +37,7 @@ Developers can use the interfaces included in the library to implement extension
  * [SharpDX License](https://github.com/sharpdx/SharpDX/blob/master/LICENSE)(MIT License)
 
 ## Contributors
-손형준(Hyeong-jun Son aka junimiso04)(junimiso04@naver.com) - **Main Developer**
+June aka handbros(junimiso04@naver.com) - **Main Developer**
 
 ## Contacts
 If you have any questions about this repository, please use GitHub Issues.
